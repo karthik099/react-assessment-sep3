@@ -1,0 +1,10 @@
+.controls-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
