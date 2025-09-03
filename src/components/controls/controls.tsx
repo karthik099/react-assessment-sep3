@@ -4,14 +4,14 @@ const controls = ({ transfer, count }) => {
     return (
         <div className='controls-wrap'>
             <button
-                className='mb-10'
-                disabled={!count.left}
+                className='btn mb-10'
+                disabled={!count.left || count.rightSelected}
                 onClick={() => transfer('right')}>
                 🡲
             </button>
             <button
-                className='mb-10'
-                disabled={!count.right}
+                className='btn mb-10'
+                disabled={!count.right || count.leftSelected}
                 onClick={() => transfer('left')}>
                 🡰
             </button>

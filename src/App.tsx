@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import CheckedList from './components/checked-list/checked-list'
 import Controls from './components/controls/controls';
@@ -29,24 +29,43 @@ function App() {
       const newLeftList = leftList.filter((item: string) => !leftSelected.includes(item));
       setRightList(newRightList);
       setLeftList(newLeftList);
-      // console.log(leftSelected, newLeftList);
     }
     else {
       const newLeftList = [...leftList, ...rightSelected];
       const newRightList = righttList.filter((item: string) => !rightSelected.includes(item));
       setRightList(newRightList);
       setLeftList(newLeftList);
-      // console.log(leftSelected, newLeftList);
     }
   }
+
+  // To reset the selected items once transfer is done
+  useEffect(() => {
+    setLeftSelected([]);
+    setRightSelected([]);
+  }, [leftList, righttList])
 
   return (
     <>
       <h2>Transfer The Checked List</h2>
       <div className='list-container'>
-        <CheckedList list={leftList} direction={'left'} onSelect={handleSelect} />
-        <Controls transfer={transferList} count={{ left: leftList.length, right: righttList.length }} />
-        <CheckedList list={righttList} direction={'right'} onSelect={handleSelect} />
+        <CheckedList
+          list={leftList}
+          direction={'left'}
+          onSelect={handleSelect} />
+        <Controls
+          transfer={transferList}
+          count={
+            {
+              left: leftList.length,
+              right: righttList.length,
+              leftSelected: leftSelected.length,
+              rightSelected: rightSelected.length
+            }
+          } />
+        <CheckedList
+          list={righttList}
+          direction={'right'}
+          onSelect={handleSelect} />
       </div>
     </>
   )

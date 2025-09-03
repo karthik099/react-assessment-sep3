@@ -1,15 +1,44 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import CheckedList from "./checked-list";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
+const mockItems = ['HTML', 'Javascript', 'Typescript', 'CSS'];
+const mockOnSelect = vi.fn();
 
-const mockLeft = ['HTML', 'Javascript', 'Typescript', 'CSS'];
-const mockRight = ['React', 'Remix', 'Next', 'Angular'];
+describe("CheckedList Component", () => {
 
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
 
-describe('Checked list',()=>{
-    it("render product card", () => {
-        render(<CheckedList list={mockLeft} direction={'left'} onSelect={()=>{}} />)
-        expect(screen.getByText(/html/i)).toBeInTheDocument();
-    })
-})
+    it("renders all items from list", () => {
+        const { getByLabelText } = render(
+            <CheckedList list={mockItems} direction="left" onSelect={mockOnSelect} />
+        );
+
+        expect(getByLabelText("HTML")).toBeInTheDocument();
+        expect(getByLabelText("CSS")).toBeInTheDocument();
+    });
+
+    it("checkboxes are unchecked initially", () => {
+        const { getByRole } = render(
+            <CheckedList list={mockItems} direction="left" onSelect={vi.fn()} />
+        );
+        const checkbox = getByRole("checkbox", { name: "HTML" });
+        expect(checkbox).not.toBeChecked();
+    });
+
+    it("calls onSelect when clicked", () => {
+        const mockOnSelect = vi.fn();
+        const { getByRole } = render(
+            <CheckedList list={mockItems} direction="left" onSelect={mockOnSelect} />
+        );
+
+        const checkbox = getByRole("checkbox", { name: "HTML" });
+        fireEvent.click(checkbox);
+
+        expect(mockOnSelect).toHaveBeenCalledWith("HTML", "left");
+        expect(mockOnSelect).toHaveBeenCalledTimes(1);
+    });
+});
