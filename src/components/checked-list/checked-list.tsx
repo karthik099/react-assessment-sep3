@@ -1,7 +1,12 @@
 import React from 'react';
 import './checked-list.css';
 
-const CheckedList = ({ list, direction, onSelect}) => {
+interface CheckedListProps {
+  list: string[];
+  direction: "left" | "right";
+  onSelect: (item: string, direction: "left" | "right") => void;
+}
+const CheckedList:React.FC<CheckedListProps> = ({ list, direction, onSelect}) => {
     console.log(direction);
     return (
         <div className='checked-list'>
