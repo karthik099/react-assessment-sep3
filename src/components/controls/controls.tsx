@@ -1,6 +1,17 @@
 import React from 'react'
 import './controls.css';
-const controls = ({ transfer, count }) => {
+
+interface ControlsProps {
+  transfer: (direction: "left" | "right") => void;
+  count: {
+    left: number;
+    right: number;
+    leftSelected: number;
+    rightSelected: number;
+  };
+}
+
+const Controls:React.FC<ControlsProps> = ({ transfer, count }) => {
     return (
         <div className='controls-wrap'>
             <button
@@ -19,4 +30,4 @@ const controls = ({ transfer, count }) => {
     )
 }
 
-export default controls
+export default Controls
