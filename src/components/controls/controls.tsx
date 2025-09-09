@@ -1,5 +1,5 @@
 import React from 'react'
-import './controls.css';
+import './Controls.css';
 
 interface ControlsProps {
   transfer: (direction: "left" | "right") => void;

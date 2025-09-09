@@ -1,5 +1,5 @@
 import React from 'react';
-import './checked-list.css';
+import './CheckedList.css';
 
 interface CheckedListProps {
   list: string[];
