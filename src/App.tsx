@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import CheckedList from './components/checked-list/checked-list'
-import Controls from './components/controls/controls';
+import CheckedList from './components/CheckedList/CheckedList'
+import Controls from './components/Controls/Controls';
 
 function App() {
 

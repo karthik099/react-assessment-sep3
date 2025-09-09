@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Controls from "./controls";
+import Controls from "./Controls";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 describe("Controls Component", () => {

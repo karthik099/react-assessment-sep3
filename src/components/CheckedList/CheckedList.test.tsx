@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import CheckedList from "./checked-list";
+import CheckedList from "./CheckedList";
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
