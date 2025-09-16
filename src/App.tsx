@@ -14,7 +14,7 @@ function App() {
 
   // function to perform the selection
   const handleSelect = (item: string, direction: "left" | "right") => {
-    console.log(item, direction)
+    // console.log(item, direction)
     if (direction == 'left') {
       setLeftSelected(prev => [...prev, item]);
     } else {

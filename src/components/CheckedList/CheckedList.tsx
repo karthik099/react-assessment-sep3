@@ -7,7 +7,7 @@ interface CheckedListProps {
   onSelect: (item: string, direction: "left" | "right") => void;
 }
 const CheckedList:React.FC<CheckedListProps> = ({ list, direction, onSelect}) => {
-    console.log(direction);
+    // console.log(direction);
     return (
         <div className='checked-list'>
             { list.map((item) => (
